@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sanvi Sharma | Aspiring Developer &amp; Python Learner</title>
+  <meta name="description" content="Portfolio of Sanvi Sharma, a first-year college student learning Python, Linux and problem-solving, and building her technical foundation one step at a time.">
+  <meta name="theme-color" content="#070a18">
+  <meta property="og:title" content="Sanvi Sharma | Aspiring Developer &amp; Python Learner">
+  <meta property="og:description" content="First-year college student exploring Python, Linux and problem-solving.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%238b5cf6'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E">
+  <style>
+/* ===== Design tokens (edit colours here) ===== */
+:root {
+  --bg: #070a18;
+  --surface: #0f1430;
+  --surface-2: #151b40;
+  --border: rgba(148, 130, 255, 0.2);
+  --text: #e8eaf6;
+  --muted: #a3a9c9;
+  --violet: #8b5cf6;
+  --purple: #a78bfa;
+  --blue: #60a5fa;
+  --grad: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  --radius: 16px;
+  --max: 1080px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.7; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--violet); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip:focus { left: 8px; }
+
+.container { width: min(100% - 40px, var(--max)); margin-inline: auto; }
+section { padding: 96px 0; position: relative; }
+.eyebrow { font-family: var(--mono); color: var(--purple); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; margin: 8px 0 40px; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ===== Navbar ===== */
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(7, 10, 24, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo { font-weight: 700; font-size: 1.15rem; }
+.logo span { color: var(--purple); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--muted); font-size: 0.95rem; transition: color 0.2s; }
+.nav-links a:hover { color: #fff; }
+.nav-toggle, .burger { display: none; }
+
+/* ===== Buttons ===== */
+.btn { display: inline-block; padding: 12px 26px; border-radius: 999px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; }
+.btn-primary { background: var(--grad); color: #fff; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(139, 92, 246, 0.45); }
+.btn-ghost { border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+.btn-ghost:hover { transform: translateY(-3px); border-color: var(--purple); background: rgba(139, 92, 246, 0.12); }
+
+/* ===== Hero ===== */
+.hero { min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 120px; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; z-index: 0; animation: float 14s ease-in-out infinite; }
+.blob.b1 { width: 420px; height: 420px; background: #7c3aed; top: -80px; left: -100px; }
+.blob.b2 { width: 380px; height: 380px; background: #2563eb; bottom: -60px; right: -80px; animation-delay: -6s; }
+@keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(40px, 30px); } }
+.hero .container { position: relative; z-index: 1; }
+.hello { font-family: var(--mono); color: var(--purple); margin-bottom: 12px; }
+.hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.4rem); line-height: 1.1; max-width: 14ch; }
+.hero p.lead { color: var(--muted); max-width: 60ch; margin: 24px 0 36px; font-size: 1.1rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 1; width: 26px; height: 42px; border: 2px solid var(--muted); border-radius: 14px; }
+.scroll::after { content: ""; position: absolute; top: 8px; left: 50%; width: 4px; height: 8px; margin-left: -2px; background: var(--purple); border-radius: 2px; animation: wheel 1.8s infinite; }
+@keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(14px); } }
+
+/* ===== About ===== */
+.about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; }
+.about-text p { color: var(--muted); margin-bottom: 18px; }
+.terminal { background: #050714; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; font-family: var(--mono); font-size: 0.9rem; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.term-bar { display: flex; gap: 7px; padding: 12px 14px; background: var(--surface); }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #3b3f66; }
+.term-body { padding: 20px; color: var(--muted); }
+.term-body .p { color: var(--blue); }
+.term-body .k { color: var(--purple); }
+.term-body .s { color: #86efac; }
+
+/* ===== Cards ===== */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+.card:hover { transform: translateY(-6px); border-color: var(--purple); box-shadow: 0 16px 40px rgba(139, 92, 246, 0.18); }
+.icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(139, 92, 246, 0.15); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; color: var(--purple); margin-bottom: 18px; }
+.card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.card p { color: var(--muted); font-size: 0.95rem; }
+.badge { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 3px 12px; border-radius: 999px; background: rgba(96, 165, 250, 0.15); color: var(--blue); border: 1px solid rgba(96, 165, 250, 0.35); margin-bottom: 14px; }
+.badge.dev { background: rgba(167, 139, 250, 0.15); color: var(--purple); border-color: rgba(167, 139, 250, 0.4); }
+.exploring { margin-top: 48px; padding: 28px; border: 1px dashed var(--border); border-radius: var(--radius); }
+.exploring h3 { margin-bottom: 4px; }
+.exploring > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.chip { padding: 8px 18px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); font-size: 0.95rem; }
+.chip small { color: var(--muted); margin-left: 6px; }
+
+/* ===== Projects ===== */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.tags li { font-family: var(--mono); font-size: 0.78rem; padding: 3px 10px; border-radius: 6px; background: var(--surface-2); color: var(--purple); }
+.status { font-size: 0.9rem; color: var(--muted); }
+.status b { color: #fff; }
+.empty { display: grid; place-items: center; text-align: center; border: 2px dashed var(--border); background: transparent; color: var(--muted); }
+.empty:hover { transform: none; box-shadow: none; }
+.empty .plus { font-size: 2.2rem; color: var(--purple); line-height: 1; margin-bottom: 8px; }
+
+/* ===== Timeline ===== */
+.timeline { position: relative; max-width: 720px; padding-left: 36px; }
+.timeline::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--violet), var(--blue), transparent); }
+.step { position: relative; margin-bottom: 28px; }
+.step::before { content: ""; position: absolute; left: -35px; top: 28px; width: 16px; height: 16px; border-radius: 50%; background: var(--violet); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--violet); }
+.step.future::before { background: var(--bg); box-shadow: 0 0 0 2px var(--blue); }
+.step .num { font-family: var(--mono); font-size: 0.8rem; color: var(--purple); }
+
+/* ===== Goals ===== */
+.goals { background: linear-gradient(160deg, var(--surface), var(--surface-2)); border: 1px solid var(--border); border-radius: 24px; padding: clamp(28px, 5vw, 56px); border-left: 4px solid var(--violet); }
+.goals p { color: var(--muted); margin-bottom: 18px; font-size: 1.05rem; max-width: 70ch; }
+.goals p:last-child { margin: 0; }
+
+/* ===== Contact ===== */
+.contact { text-align: center; }
+.contact .lead { color: var(--muted); max-width: 56ch; margin: 0 auto 40px; }
+.contact-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; text-align: left; }
+.contact-list a.card { display: block; }
+.contact-list small { color: var(--purple); font-family: var(--mono); }
+.contact-list span { display: block; word-break: break-all; margin-top: 6px; }
+
+/* ===== Footer ===== */
+footer { border-top: 1px solid var(--border); padding: 48px 0 32px; background: #050714; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; }
+.foot p { color: var(--muted); max-width: 32ch; margin-top: 6px; }
+.foot ul { display: flex; flex-wrap: wrap; gap: 18px; color: var(--muted); }
+.foot a:hover { color: #fff; }
+.copy { margin-top: 32px; color: var(--muted); font-size: 0.85rem; }
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  section { padding: 72px 0; }
+  .about-grid { grid-template-columns: 1fr; }
+  .burger { display: grid; gap: 5px; cursor: pointer; padding: 10px; }
+  .burger span { width: 24px; height: 2px; background: var(--text); transition: 0.25s; }
+  .nav-links { position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); max-height: 0; overflow: hidden; transition: max-height 0.3s; }
+  .nav-links a { padding: 16px 20px; border-top: 1px solid var(--border); }
+  .nav-toggle:checked ~ .nav-links { max-height: 400px; }
+  .nav-toggle:checked ~ .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+  .nav-toggle:checked ~ .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-toggle:focus-visible ~ .burger { outline: 3px solid var(--blue); border-radius: 8px; }
+  .nav-inner { position: relative; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="nav">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a class="logo" href="#home" aria-label="Sanvi Sharma, back to top">Sanvi<span>.</span>Sharma</a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+      <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#goals">Goals</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="blob b1" aria-hidden="true"></div>
+      <div class="blob b2" aria-hidden="true"></div>
+      <div class="container">
+        <p class="hello">Hi, I'm Sanvi Sharma.</p>
+        <h1 id="hero-title">Aspiring Developer &amp; <span class="grad-text">Python Learner</span></h1>
+        <p class="lead">I'm a first-year college student exploring programming, Linux, and problem-solving. I'm building my technical foundation one step at a time and turning what I learn into practical experience.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">Explore My Work</a>
+          <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+        </div>
+      </div>
+      <a class="scroll" href="#about" aria-label="Scroll down to About section"></a>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <p class="eyebrow">About me</p>
+        <h2 id="about-title">Beginning my journey in tech</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>Hi, I'm Sanvi Sharma, a first-year college student beginning my journey in technology and programming.</p>
+            <p>I'm currently learning Python and exploring Linux command-line tools. I enjoy practising coding problems, understanding programming logic, and learning how different commands work.</p>
+            <p>Most of my experience so far comes from practice programs and learning exercises. I'm focused on strengthening my fundamentals, becoming more confident in writing code independently, and gradually applying my knowledge to practical projects.</p>
+            <p>I'm still at the beginning of my journey, and I'm looking forward to exploring web development, building projects, and discovering the areas of computer science that interest me most.</p>
+          </div>
+          <div class="terminal" aria-hidden="true">
+            <div class="term-bar"><i></i><i></i><i></i></div>
+            <div class="term-body">
+              <div><span class="p">$</span> python3 hello.py</div>
+              <div class="s">Hello, world!</div>
+              <div>&nbsp;</div>
+              <div><span class="p">$</span> ls -l</div>
+              <div><span class="k">practice/</span> notes.txt</div>
+              <div>&nbsp;</div>
+              <div><span class="p">$</span> echo "learning every day"</div>
+              <div class="s">learning every day</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <p class="eyebrow">Skills</p>
+        <h2 id="skills-title">What I'm learning</h2>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon" aria-hidden="true">Py</div>
+            <span class="badge">Beginner</span>
+            <h3>Python Programming</h3>
+            <p>Basic syntax, variables, input/output, operators, type casting, conditional statements, loops, and beginner coding problems.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">&gt;_</div>
+            <span class="badge">Beginner</span>
+            <h3>Linux &amp; Command Line</h3>
+            <p>File and directory management, terminal commands, text searching, pipes, redirection, and basic file permissions.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">{ }</div>
+            <span class="badge dev">Developing</span>
+            <h3>Programming Logic &amp; Problem-Solving</h3>
+            <p>Practising number-based problems, loops, conditional logic, and step-by-step approaches to coding questions.</p>
+          </article>
+        </div>
+
+        <div class="exploring">
+          <h3>Currently Exploring</h3>
+          <p>These are learning goals, not mastered skills.</p>
+          <ul class="chips">
+            <li class="chip">Web Development <small>learning goal</small></li>
+            <li class="chip">Git and GitHub <small>learning goal</small></li>
+            <li class="chip">Practical Software Projects <small>learning goal</small></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <p class="eyebrow">Projects</p>
+        <h2 id="projects-title">My work so far</h2>
+        <div class="grid-3">
+
+          <!-- PROJECT CARD: copy this whole <article> to add a new project -->
+          <article class="card">
+            <span class="badge">Beginner Python</span>
+            <h3>Python Practice Collection</h3>
+            <p>A collection of beginner-level Python practice programs created while learning programming fundamentals and problem-solving.</p>
+            <ul class="tags" aria-label="Topics">
+              <li>Input/Output</li>
+              <li>Operators</li>
+              <li>Conditional Statements</li>
+              <li>Loops</li>
+              <li>Number-Based Problems</li>
+            </ul>
+            <p class="status"><b>Status:</b> Learning and Practice</p>
+            <!-- When you have a GitHub link, add this line:
+            <p><a href="YOUR-REPO-URL" target="_blank" rel="noopener">View on GitHub</a></p> -->
+          </article>
+          <!-- END PROJECT CARD -->
+
+          <div class="card empty">
+            <div>
+              <div class="plus" aria-hidden="true">+</div>
+              <p>More projects coming soon as I keep learning and building.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARNING JOURNEY ===== -->
+    <section id="journey" aria-labelledby="journey-title">
+      <div class="container">
+        <p class="eyebrow">Learning journey</p>
+        <h2 id="journey-title">One step at a time</h2>
+        <ol class="timeline">
+          <li class="step card">
+            <span class="num">STAGE 1</span>
+            <h3>Python Fundamentals</h3>
+            <p>Learning variables, operators, conditional statements, loops, and basic programming problems.</p>
+          </li>
+          <li class="step card">
+            <span class="num">STAGE 2</span>
+            <h3>Linux and Command Line</h3>
+            <p>Practising terminal commands, file management, text searching, pipes, redirection, and permissions.</p>
+          </li>
+          <li class="step card">
+            <span class="num">STAGE 3</span>
+            <h3>Programming Practice</h3>
+            <p>Solving coding questions and improving programming logic through exercises.</p>
+          </li>
+          <li class="step future card">
+            <span class="num">STAGE 4 &middot; FUTURE GOAL</span>
+            <h3>What's Next</h3>
+            <p>Learning HTML and CSS, improving GitHub usage, exploring web development, and building my first personal website or small application.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== GOALS ===== -->
+    <section id="goals" aria-labelledby="goals-title">
+      <div class="container">
+        <p class="eyebrow">Goals</p>
+        <h2 id="goals-title">Where I'm heading</h2>
+        <div class="goals">
+          <p>My current goal is to strengthen my programming fundamentals and become more confident in solving problems independently.</p>
+          <p>I plan to explore web development, learn to manage code using Git and GitHub, and gradually build practical projects that demonstrate my learning.</p>
+          <p>I want to keep expanding my technical knowledge, gain practical experience, and develop skills that will help me grow in the field of technology.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Let's Connect</h2>
+        <p class="lead">I'm at the beginning of my journey in technology and look forward to learning new things, exploring opportunities, and connecting with fellow learners.</p>
+        <div class="contact-list">
+          <a class="card" href="mailto:sanvii06939@gmail.com" aria-label="Send an email to Sanvi">
+            <small>EMAIL</small><span>sanvii06939@gmail.com</span>
+          </a>
+          <a class="card" href="https://github.com/sanvii06939-dev" target="_blank" rel="noopener" aria-label="Sanvi's GitHub profile (opens in new tab)">
+            <small>GITHUB</small><span>github.com/sanvii06939-dev</span>
+          </a>
+          <a class="card" href="https://www.linkedin.com/in/sanvi-sharma-385972420/" target="_blank" rel="noopener" aria-label="Sanvi's LinkedIn profile (opens in new tab)">
+            <small>LINKEDIN</small><span>linkedin.com/in/sanvi-sharma-385972420</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>
+          <strong>Sanvi Sharma</strong>
+          <p>Learning, building, and growing one step at a time.</p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#goals">Goals</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <ul aria-label="Social links">
+          <li><a href="https://github.com/sanvii06939-dev" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/sanvi-sharma-385972420/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:sanvii06939@gmail.com">Email</a></li>
+        </ul>
+      </div>
+      <p class="copy">&copy; 2026 Sanvi Sharma. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
